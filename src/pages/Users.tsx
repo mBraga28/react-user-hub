@@ -29,7 +29,7 @@ export default function Users() {
       return;
     }
     console.log('Token:', token); // Check if the token is not null
-    axios.get('http://localhost:3003/users', {
+    axios.get('http://localhost:3000/users', {
       headers: {
         Authorization: `Bearer ${token}`
       }

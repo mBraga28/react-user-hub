@@ -24,7 +24,7 @@ export default function Register() {
     }
     try {
       // Send the data to your API
-      await axios.post('http://localhost:3003/users', {
+      await axios.post('http://localhost:3000/users', {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,

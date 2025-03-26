@@ -8,7 +8,6 @@ interface User {
   id: string;
   email: string;
   role?: string | { name: string };
-  // adicione outras propriedades conforme necessário
 }
 
 export function useAuth() {
@@ -23,7 +22,7 @@ export function useAuth() {
         const userId = decoded.sub;
         // Busca os dados do usuário pelo id
         axios
-          .get<User>(`http://localhost:3003/users/${userId}`, {
+          .get<User>(`http://localhost:3000/users/${userId}`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then(response => {
@@ -39,7 +38,7 @@ export function useAuth() {
             setUser(null);
           });
       } catch (error) {
-        console.error('Token inválido', error);
+        console.error('Invalid token', error);
         localStorage.removeItem('token');
       }
     }
@@ -48,7 +47,6 @@ export function useAuth() {
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
-    // Opcional: redirecionar o usuário
   };
 
   return { user, logout };

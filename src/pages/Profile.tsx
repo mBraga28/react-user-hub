@@ -53,7 +53,7 @@ export default function Profile() {
       updateData.password = data.newPassword;
     }
     try {
-      await axios.patch(`http://localhost:3003/users/${user?.id}`, updateData, {
+      await axios.patch(`http://localhost:3000/users/${user?.id}`, updateData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Profile updated successfully!");
