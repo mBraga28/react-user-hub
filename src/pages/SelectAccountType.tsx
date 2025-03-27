@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function SelectAccountType() {
   const navigate = useNavigate();
@@ -35,8 +35,10 @@ export default function SelectAccountType() {
         <div>
           <p className="mt-4 text-sm font-light text-gray-500 dark:text-gray-400">
             Already have an account?{' '}
-            <a href="/login" className="font-medium text-blue-600 hover:underline dark:text-blue-500">
-              Sign in
+            <a className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+              <Link to={"/login"} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                Sign in
+              </Link>
             </a>
           </p>
         </div>
