@@ -22,7 +22,7 @@ export function useAuth() {
         const userId = decoded.sub;
         // Busca os dados do usuário pelo id
         axios
-          .get<User>(`http://localhost:3000/users/${userId}`, {
+          .get<User>(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
             headers: { Authorization: `Bearer ${token}` },
           })
           .then(response => {

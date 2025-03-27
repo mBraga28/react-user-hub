@@ -29,7 +29,7 @@ export default function Users() {
       return;
     }
     console.log('Token:', token); // Check if the token is not null
-    axios.get('http://localhost:3000/users', {
+    axios.get(`${import.meta.env.VITE_API_URL}/users`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

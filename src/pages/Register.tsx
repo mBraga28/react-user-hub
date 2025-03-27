@@ -24,7 +24,7 @@ export default function Register() {
     }
     try {
       // Send the data to your API
-      await axios.post('http://localhost:3000/users', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/users`, {
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,

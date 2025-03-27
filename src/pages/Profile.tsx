@@ -53,7 +53,7 @@ export default function Profile() {
       updateData.password = data.newPassword;
     }
     try {
-      await axios.patch(`http://localhost:3000/users/${user?.id}`, updateData, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/users/${user?.id}`, updateData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert("Profile updated successfully!");
@@ -76,7 +76,7 @@ export default function Profile() {
     );
     if (!confirmDelete) return;
     try {
-      await axios.delete(`http://localhost:3003/users/${user.id}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/users/${user.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Your account has been deleted.");
