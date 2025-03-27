@@ -1,6 +1,11 @@
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { jwtDecode, JwtPayload as BaseJwtPayload } from 'jwt-decode';
+
+interface JwtPayload extends BaseJwtPayload {
+  role?: string;
+}
 
 type FormData = {
   firstName: string;
@@ -31,9 +36,28 @@ export default function Register() {
         password: data.password,
         accountType: accountType
       });
-      navigate('/login');
+
+      // Após o registro, realiza o login automaticamente
+    const loginResponse = await axios.post(`${import.meta.env.VITE_API_URL}/login`, {
+      email: data.email,
+      password: data.password,
+    });
+
+      // Save the token in localStorage
+      const token = loginResponse.data.accessToken;
+      localStorage.setItem('token', token);
+
+      // Decode the token to check the account type
+      const decoded = jwtDecode<JwtPayload>(token);
+      // Redirect based on account type
+      if (decoded.role && decoded.role.toLowerCase() === 'admin') {
+        navigate('/users'); // Page for admin
+      } else if (decoded.role && decoded.role.toLowerCase() === 'consumer') {
+        navigate('/profile'); // Page for consumer
+      } 
     } catch (error) {
       console.error(error);
+      alert('An error occurred while creating the account.');
     }
   };
 

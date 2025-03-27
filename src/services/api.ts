@@ -15,7 +15,7 @@ api.interceptors.request.use((config) => {
 
 // Function for login
 export const login = (credentials: { email: string; password: string; }) => {
-    return api.post('/auth/login', credentials);
+    return api.post('/login', credentials);
 };
 
 // Function to get list of users
